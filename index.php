@@ -1,0 +1,74 @@
+<?php
+session_start();
+
+require_once __DIR__ . '/models/account.php';
+require_once __DIR__ . '/controllers/account.php';
+require_once __DIR__ . '/public/database.config.php';
+
+// Dummy credentials (replace with database later)
+$valid_user = "admin";
+$valid_pass = "123456";
+
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
+    $username = $_POST["username"] ?? "";
+    $password = $_POST["password"] ?? "";
+
+    $credentials = new Account($username, $password);
+    $controller = new AccountController(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
+
+    $result = $controller->login(
+        $credentials->username,
+        $credentials->password
+    );
+
+    if ($result) {
+        header("Location: views/dashboard");
+        die();
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="public/styles.css">
+</head>
+<body>
+
+<div class="auth-container flex-center">
+    <div class="card auth-card">
+
+        <h1>Login</h1>
+
+<!-- PHP/HTML block -->
+<?php if (!empty($message)): ?> 
+    <!-- use this syntax to refer variables -->
+    <p style="color:green;"><?= $message ?></p>
+<?php endif; ?>
+<!-- END OF BLOCK -->
+
+<!-- PHP/HTML block -->
+<?php if (!empty($errors)): ?> 
+    <!-- use this syntax to refer variables -->
+    <p style="color:red;"><?= $errors ?></p>
+<?php endif; ?>
+<!-- END OF BLOCK -->
+
+<form method="POST">
+    <label>Username:</label>
+    <input type="username" name="username" required><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" required><br><br>
+
+    <button type="submit" name="login">Login</button>
+</form>
+
+    </div>
+</div>
+
+</body>
+</html>

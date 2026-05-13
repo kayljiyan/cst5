@@ -1,5 +1,5 @@
 <?php
-const SERVER_NAME = "localhost";
-const USERNAME = "root";
-const PASSWORD = "";
-const DB_NAME = "phpexample";
+$SERVER_NAME = getenv('SERVER_NAME');
+$USERNAME = getenv('USERNAME');
+$PASSWORD = getenv('PASSWORD');
+$DB_NAME = getenv('DB_NAME');

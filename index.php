@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
     $password = $_POST["password"] ?? "";
 
     $credentials = new Account($username, $password);
-    $controller = new AccountController(SERVER_NAME, USERNAME, PASSWORD, DB_NAME);
+    $controller = new AccountController($SERVER_NAME, $USERNAME, $PASSWORD, $DB_NAME);
 
     $result = $controller->login(
         $credentials->username,
@@ -30,13 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="public/styles.css">
-</head>
-<body>
+<?php require 'views/partial/header.php'; ?>
 
 <div class="auth-container flex-center">
     <div class="card auth-card">
@@ -70,5 +64,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
     </div>
 </div>
 
-</body>
-</html>
+<?php require 'views/partial/footer.php'; ?>

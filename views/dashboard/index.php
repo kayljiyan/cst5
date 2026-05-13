@@ -10,19 +10,14 @@ if (isset($_COOKIE["username"])) {
 }
 ?>
 
+
 <!-- LOGIC MUST BE ON TOP (THE BULK OF YOUR PHP CODE) -->
 <!-- SEPARATE YOUR CODE -->
 <!-- INTERFACE (FRONTEND) SHOULD BE ON THE BOTTOM (PHP/HTML BLOCKS) -->
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
+<?php require '../partial/header.php'; ?>
 
 <h1>Welcome to the Dashboard!</h1>
 <img src="../../public/assets/cl2.png" alt="Lab Sched" width="viewport"/>
 
-</body>
-</html>
+<?php require '../partial/footer.php'; ?>

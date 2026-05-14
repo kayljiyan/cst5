@@ -9,7 +9,8 @@ require_once __DIR__ . '/public/database.config.php';
 $valid_user = "admin";
 $valid_pass = "123456";
 
-$error = "";
+$errors = "";
+$messages = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
     $username = $_POST["username"] ?? "";
@@ -24,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
     );
 
     if ($result) {
-        header("Location: views/dashboard");
-        die();
+        header("Location: /views/dashboard");
+        exit();
     }
 }
 ?>
@@ -53,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
 
 <form method="POST">
     <label>Username:</label>
-    <input type="username" name="username" required><br><br>
+    <input type="text" name="username" required><br><br>
 
     <label>Password:</label>
     <input type="password" name="password" required><br><br>

@@ -1,6 +1,7 @@
 <?php
 // This will contain all the processes/functions
 // that affect the Account model
+require_once __DIR__ . '/public/database.config.php';
 class AccountController {
     // Properties
     private $conn;
